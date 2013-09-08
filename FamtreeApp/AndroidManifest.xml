@@ -25,6 +25,11 @@
         <activity
             android:name="com.example.famtreeapp.GestureActivity"
             android:label="@string/title_activity_gesture" >
+            <intent-filter>
+                <action android:name="com.example.famtreeapp.GESTUREACTIVITY" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

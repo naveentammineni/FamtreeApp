@@ -12,6 +12,7 @@ import android.gesture.GestureOverlayView.OnGestureListener;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.gesture.Prediction;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,8 +23,9 @@ public class GestureActivity extends Activity implements OnGesturePerformedListe
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_gesture);
+		
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.activity_gesture, null);
 		gestureOverlayView.setGestureColor(Color.rgb(0, 255, 0));
@@ -33,6 +35,12 @@ public class GestureActivity extends Activity implements OnGesturePerformedListe
 		gestureOverlayView.addOnGesturePerformedListener(this);
 		
 	    gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
+	    if(!gestureLib.load()){
+	    	Log.i("debug", "GestureLib not loaded");
+	    }
+	    else
+	    	Log.i("debug", "GestureLib loaded");
+	    setContentView(gestureOverlayView);
 	}
 
 	@Override
